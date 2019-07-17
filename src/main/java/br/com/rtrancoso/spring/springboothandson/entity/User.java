@@ -9,6 +9,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -21,12 +22,15 @@ public class User {
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
 
+	@NotNull( message = "É necessário informar o nome." )
 	@Column( nullable = false )
 	private String name;
 
+	@NotNull( message = "É necessário informar o email." )
 	@Column( nullable = false, unique = true )
 	private String email;
 
+	@NotNull( message = "É necessário informar uma senha." )
 	@Column( nullable = false )
 	private String password;
 

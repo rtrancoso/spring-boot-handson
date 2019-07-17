@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
+import javax.validation.constraints.NotNull;
 
 import lombok.Data;
 
@@ -19,6 +20,7 @@ public class System {
 	@GeneratedValue( strategy = GenerationType.IDENTITY )
 	private Long id;
 
+	@NotNull( message = "É necessário informar o nome." )
 	@Column( nullable = false )
 	private String name;
 

@@ -2,6 +2,9 @@ package br.com.rtrancoso.spring.springboothandson.service;
 
 import java.util.List;
 
+import javax.persistence.EntityNotFoundException;
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,18 +18,18 @@ public class UserService {
 	private UserRepository userRepository;
 
 	public User find( Long id ) {
-		return userRepository.findById( id ).orElse( null );
+		return userRepository.findById( id ).orElseThrow( () -> new EntityNotFoundException() );
 	}
 
 	public List<User> findAll() {
 		return ( List<User> ) userRepository.findAll();
 	}
 
-	public User create( User system ) {
+	public User create( @Valid User system ) {
 		return userRepository.save( system );
 	}
 
-	public User update( Long id, User system ) {
+	public User update( Long id, @Valid User system ) {
 		return userRepository.save( system );
 	}
 
